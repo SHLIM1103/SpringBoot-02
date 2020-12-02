@@ -10,8 +10,8 @@
         table tr td{border: 1px solid gray;}
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
+
 <body>
     <h1>LOGIN</h1>
 <form>
@@ -32,7 +32,7 @@
     </table>
 </form>
     <script>
-        document.getElementById('userid')
+        document.getElementById('login-btn')
         .addEventListener('click', e => {
             e.preventDefault()
             $.ajax({
@@ -43,8 +43,8 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success: d => {
-                    if(d.userid !== 'FAILURE'){
-                        alert(`${d.userid} 님, 로그인 성공!`)
+                    if(d.name !== "FAILURE"){
+                        alert(`${d.name} 님, 로그인 성공!`)
                     }else{
                         alert(`로그인 실패!`)
                         document.getElementById('userid').value = ''

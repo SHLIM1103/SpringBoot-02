@@ -32,8 +32,10 @@ public class UserController {
 
     @PostMapping("/users/login")
     public Map<String, String> login(@RequestBody UserDTO user){
-        System.out.println("===Login===");
+        System.out.println("=== Login ===");
         Map<String, String> map = new HashMap<>();
+        System.out.println("ID: " + user.getUserid());
+        System.out.println("PW: " + user.getPassword());
         UserDTO result = userService.login(user);
         if(result != null){
             map.put("name", result.getName());
