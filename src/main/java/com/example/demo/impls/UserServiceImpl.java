@@ -12,7 +12,13 @@ public class UserServiceImpl implements UserService {
     @Autowired UserRepository userRepository;
     @Override
     public int join(UserDTO user) {
-        return userRepository.join(user);
+        return userRepository.insert(user);
     }
+
+    @Override
+    public UserDTO login(UserDTO user) {
+        return userRepository.login(user);
+    }
+
     
 }

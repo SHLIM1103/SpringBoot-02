@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository {
-	public int join(UserDTO user);
-    
+public int insert(UserDTO user);
+public UserDTO login(UserDTO user);
 }
