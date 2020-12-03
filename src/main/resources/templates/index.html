@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HOME</h1>
+    <a id="join" href="#">회원가입</a><br>
+    <a id="login" href="#">로그인</a><br>
+    <a id="mypage" href="#">마이페이지</a><br>
+    <script>
+        document.getElementById('join').addEventListener('click', e => {location.href="/move/users/join"})
+        document.getElementById('login').addEventListener('click', e => {location.href="/move/users/login"})
+        document.getElementById('mypage').addEventListener('click', e => {location.href="move/users/mypage"})
+    </script>
+</body>
+</html>
