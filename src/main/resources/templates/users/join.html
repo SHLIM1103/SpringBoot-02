@@ -48,8 +48,9 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success: d => {
-                    
-                    
+                    if(d.message === "SUCCESS"){
+                        alert(`회원가입 성공!`)
+                    }
                 },
                 error: e => {
                     alert(`회원가입 에러 발생: ${e}`)

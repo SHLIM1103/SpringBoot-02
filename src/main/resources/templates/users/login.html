@@ -42,9 +42,10 @@
                 dataType: 'json',
                 contentType: 'application/json',
                 success: d => {
-                    if(d.name !== "FAILURE"){
-                        alert(`로그인 성공!`)
+                    if(d.message !== "FAILURE"){
                         location.href='/move/users/mypage'
+                        alert(`로그인한 사람의 ID: ${d.loginUser.userid}`)
+                        sessionStorage.setItem('loginUserid', d.loginUser.userid)
                     }else{
                         location.href='/move/users/login'
                     }

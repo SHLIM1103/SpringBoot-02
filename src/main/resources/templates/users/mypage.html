@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table {border: 2px solid gray;}
+        table tr {border: 1px solid black;}
+        table tr td {border: 1px solid black;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <h1>MY PAGE</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PW</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>NAME</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="delete-btn">정보삭제</button>
+                <button id="home-btn">홈으로</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        document.getElementById('home-btn').addEventListener('click', e => {
+            e.preventDefault()
+            location.href='/'
+        })
+        alert(`마이페이지로 넘어온 로그인 ID: ${sessionStorage.getItem('loginUserid')}`)
+        $.getJSON(`/users/${sessionStorage.getItem('loginUserid')}`, d => {
+                alert(`마이페이지 데이터 전송 성공!`)
+        })
+    </script>
 </body>
 </html>
