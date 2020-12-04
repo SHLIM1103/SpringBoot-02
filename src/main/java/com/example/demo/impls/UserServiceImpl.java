@@ -19,6 +19,4 @@ public class UserServiceImpl implements UserService {
     public UserDTO login(UserDTO user) {
         return userRepository.login(user);
     }
-
-    
 }
