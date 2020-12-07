@@ -19,4 +19,19 @@ public class UserServiceImpl implements UserService {
     public UserDTO login(UserDTO user) {
         return userRepository.login(user);
     }
+
+    @Override
+    public UserDTO findById(String userid) {
+        return userRepository.selectById(userid);
+    }
+
+    @Override
+    public int delete(UserDTO user) {
+        return userRepository.delete(user);
+    }
+
+    @Override
+    public int update(UserDTO user) {
+        return userRepository.update(user);
+    }
 }

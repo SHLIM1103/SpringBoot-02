@@ -3,9 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {border: 2px solid gray;}
+        table tr {border: 1px solid black;}
+        table tr td {border: 1px solid black;}
+    </style>
     <title>Document</title>
 </head>
 <body>
-    <h1>UPDATE INFO</h1>
+    <h1>UPDATE PASSWORD</h1>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td><span id="userid"></span></td>
+        </tr>
+        <tr>
+            <td>NEW PW</td>
+            <td><input id="password" type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button id="confirm-btn">확 인</button>
+            </td>
+        </tr>
+    </table>
+    <button id="home-btn">홈으로</button>
+    <script>
+        document.getElementById('userid').innerHTML = sessionStorage.getItem('loginUserid')
+        document.getElementById('confirm-btn').addEventListener('click', e => {
+            alert(`수정하려는 ID: ${document.getElementById('userid').innerText},
+                  PW: ${document.getElementById('password').value}`)
+                  $.ajax({
+                      url: '/users',
+                      type: 'PUT',
+                      data: JSON.stringify({userid: document.getElementById('userid').innerText,
+                                            password: document.getElementById('password').value}),
+                      dataType: 'json',
+                      contentType: 'application/json',
+                      success: d => {
+                        if(d.message === "SUCCESS"){
+                            location.href='/move/users/mypage'
+                        }else{
+                            location.href='/move/users/update'
+                        }
+                      },
+                      error: e => {
+                          alert(`비밀번호 수정 실패: ${e}`)
+                      }
+                  })
+        })
+        document.getElementById('home-btn').addEventListener('click', e => {location.href='/'})
+    </script>
 </body>
 </html>

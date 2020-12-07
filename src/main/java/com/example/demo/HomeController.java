@@ -1,21 +1,25 @@
 package com.example.demo;
 
+import com.example.demo.utils.Printer;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HomeController {
+    @Autowired Printer printer;
     @GetMapping("/")
     public String index(){
-        System.out.println("===서버가 시작되었습니다===");
+        printer.accept("===서버가 시작되었습니다===");
         return "index";
     }
 
     @GetMapping("/move/{dir}/{page}")
     public String move(@PathVariable String dir, @PathVariable String page){
-        System.out.println("이동한 디렉토리: " + dir);
-        System.out.println("이동한 페이지: " + page);
+        printer.accept("이동한 디렉토리: " + dir);
+        printer.accept("이동한 페이지: " + page);
         return String.format("%s/%s", dir, page);
     }
 }

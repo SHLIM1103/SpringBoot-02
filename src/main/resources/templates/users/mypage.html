@@ -16,19 +16,21 @@
     <table>
         <tr>
             <td>ID</td>
-            <td></td>
+            <td id="userid"></td>
         </tr>
         <tr>
             <td>PW</td>
-            <td></td>
+            <td id="password"></td>
         </tr>
         <tr>
             <td>NAME</td>
-            <td></td>
+            <td id="name"></td>
         </tr>
         <tr>
             <td colspan="2">
-                <button id="delete-btn">정보삭제</button>
+                <button id="update-btn">비번수정</button>
+                <button id="delete-btn">회원탈퇴</button>
+                <button id="logout-btn">로그아웃</button>
                 <button id="home-btn">홈으로</button>
             </td>
         </tr>
@@ -38,9 +40,34 @@
             e.preventDefault()
             location.href='/'
         })
+        document.getElementById('update-btn').addEventListener('click', e => {
+            location.href='/move/users/update'
+        })
+        document.getElementById('delete-btn').addEventListener('click', e => {
+            $.ajax({
+                url: '/users',
+                type: 'DELETE',
+                data: JSON.stringify({userid: sessionStorage.getItem('loginUserid')}),
+                dataType: 'json',
+                contentType: 'application/json',
+                success: d => {
+                    sessionStorage.setItem('loginUserid', '')
+                    location.href='/'
+                },
+                error: e => {
+                    alert(`회원정보 삭제 에러: ${e}`)
+                }
+            })
+        })
+        document.getElementById('logout-btn').addEventListener('click', e => {
+            sessionStorage.setItem('loginUserid', '')
+            location.href='/'
+        })
         alert(`마이페이지로 넘어온 로그인 ID: ${sessionStorage.getItem('loginUserid')}`)
         $.getJSON(`/users/${sessionStorage.getItem('loginUserid')}`, d => {
-                alert(`마이페이지 데이터 전송 성공!`)
+            document.getElementById('userid').innerHTML = d.loginUser.userid
+            document.getElementById('password').innerHTML = d.loginUser.password
+            document.getElementById('name').innerHTML = d.loginUser.name
         })
     </script>
 </body>
